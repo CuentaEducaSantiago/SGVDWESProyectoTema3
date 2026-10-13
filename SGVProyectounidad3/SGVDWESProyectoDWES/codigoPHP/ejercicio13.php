@@ -2,22 +2,19 @@
 <html lang="es">
     <!--
     Autor: Santiago González Vicente
-    Fecha Modificacion: 2026-09-28
+    Fecha Modificacion: 2026-10-04
     Descripcion: Indice DAW2
     -->
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--       <link rel="shortcut icon" type="image/jpg" href="webroot/favicon/favicon.ico">-->
         <title>Santiago González Vicente</title>
     </head>
     <body>
+        <h2><a href='../indexProyectoTema3.php'>volver</a></h2>
         <?php
-        $partesHTMLBasicas = <<< EOT
-        head: title,style,link, meta
-        Body: header, h1, h2, h3, h4, p, footer
-        EOT;
-        echo "<h4>"+print_r($partesHTMLBasicas)+"</h4>";
+        $cont=0;
+        
         ?>
     </body>
 </html>

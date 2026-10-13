@@ -13,9 +13,8 @@
     <body>
         <?php
         echo "<h1>Hola Mundo</h1>";
-        echo "<h2><a href='../indexProyectoTema3.php'>volver</a></h1>";
+        echo "<h2><a href='../indexProyectoTema3.php'>volver</a></h2>";
         phpinfo();
         ?>
     </body>
 </html>
-

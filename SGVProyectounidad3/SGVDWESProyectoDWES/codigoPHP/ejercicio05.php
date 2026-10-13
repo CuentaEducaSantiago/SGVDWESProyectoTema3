@@ -11,9 +11,10 @@
         <title>Santiago González Vicente</title>
     </head>
     <body>
+        <h2><a href='../indexProyectoTema3.php'>volver</a></h2>
         <?php
-        $fechaActual = new DateTime();
-        echo $fechaActual->format("d/m/y H:i:s");
+        $timestamp = time();
+        echo "<h2>Segundos: ",$timestamp,"</h2>";
         ?>
     </body>
 </html>

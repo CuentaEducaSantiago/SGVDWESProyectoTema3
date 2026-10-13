@@ -11,10 +11,9 @@
         <title>Santiago González Vicente</title>
     </head>
     <body>
+        <h2><a href='../indexProyectoTema3.php'>volver</a></h2>
         <?php
-        date_default_timezone_set("Europe/Lisbon");
-        $fechaActual = new DateTime();
-        echo $fechaActual->format("d/m/y H:i:s");
+        echo "<h2> ", $_SERVER['SERVER_ADDR'],"</h2>";
         ?>
     </body>
 </html>

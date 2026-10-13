@@ -25,15 +25,6 @@ header {
     margin-bottom: 20px;
 }
 
-p.G {
-    margin-right:470px;
-    margin-left:30px;
-}
-
-p.N {
-    position: right;
-    margin-left:530px;
-}
 /* Contenedor principal izquierda */
 div {
     display: inline-flex;
