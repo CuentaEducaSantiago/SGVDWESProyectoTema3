@@ -1,78 +1,127 @@
+```php
 <!DOCTYPE html>
 <html lang="es">
     <!--
     Autor: Santiago González Vicente
-    Fecha Modificacion: 2026-09-28
-    Descripcion: Indice DAW2
+    Fecha Modificación: 2026-10-12
+    Descripción: Cuestionario DAW2
     -->
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Santiago González Vicente</title>
+
         <style>
-            form{
+            form {
                 display: block;
             }
         </style>
     </head>
+
     <body>
         <!--
-        -- Moisés Alberto Dominguez Cruz
-        -- 12/10/2026
-        -- 23. Construir un formulario para recoger un cuestionario realizado a una persona y mostrar en la misma página las preguntas y las respuestas
-        -- recogidas; en el caso de que alguna respuesta esté vacía o errónea volverá a salir el formulario con el mensaje correspondiente.
+        Ejercicio 23:
+        Construir un formulario para recoger un cuestionario
+        y mostrar las preguntas y respuestas.
+        Si hay errores, volver a mostrar el formulario.
         -->
+
         <?php
-        echo "<a href='../indexProyectoTema3.php' class='enlace-volver'>⬅ Volver al inicio</a><br>";
+        echo "<a href='../indexProyectoTema3.php'
+              class='enlace-volver'>⬅ Volver al inicio</a><br>";
 
         require_once '../core/231018libreriaValidacion.php';
 
-        // Inicializacion de variables
-        $entradaOK = true; // Variable que nos indica que todo va bien.
-        $aErrores = ['nombre' => '', 'curso' => '']; //ARRAY Errores
-        $aRespuestas = ['nombre' => '', 'curso' => '']; //ARRAY Respuestas correctas
+        // Inicialización de variables
+        $entradaOK = true;
+
+        $aErrores = [
+            'nombre' => '',
+            'curso' => ''
+        ];
+
+        $aRespuestas = [
+            'nombre' => '',
+            'curso' => ''
+        ];
+
+        // Comprobar si se ha enviado el formulario
         if (isset($_POST['enviar'])) {
 
-            // Validacion 
-            $aErrores['nombre'] = validacionFormularios::comprobarAlfabetico($_REQUEST['nombre'], 100, 0, 1);
-            $aErrores['curso'] = validacionFormularios::comprobarAlfabetico($_REQUEST['curso'], 150, 0, 1);
+            // Recoger y validar los datos
+            $aErrores['nombre'] =
+                validacionFormularios::comprobarAlfabetico(
+                    $_POST['nombre'] ?? '',
+                    100,
+                    1,
+                    1
+                );
 
-            foreach ($aErrores as $campo => $valor) {
-                if ($valor != null) {
-                    $entradaOk = false;
+            $aErrores['curso'] =
+                validacionFormularios::comprobarAlfabetico(
+                    $_POST['curso'] ?? '',
+                    150,
+                    1,
+                    1
+                );
+
+            // Comprobar si hay errores
+            foreach ($aErrores as $campo => $error) {
+                if ($error != null) {
+                    $entradaOK = false;
                 }
             }
+
+            // Si todo es correcto, guardar las respuestas
+            if ($entradaOK) {
+                $aRespuestas['nombre'] = $_POST['nombre'];
+                $aRespuestas['curso'] = $_POST['curso'];
+            }
+
         } else {
             $entradaOK = false;
         }
 
+        // Mostrar las respuestas si todo es correcto
         if ($entradaOK) {
-            foreach ($aRespuestas )print_r('El nombre es: ' . $aRespuestas['nombre']);
-            echo '<br>';
-        }
-        ?>    
+
+            echo "<h2>Respuestas del cuestionario</h2>";
+
+            echo "El nombre es: " .
+                htmlspecialchars($aRespuestas['nombre']);
+
+            echo "<br>";
+            echo "El curso es: " . htmlspecialchars($aRespuestas['curso']);
+
+        } else {
+        ?>
 
             <!-- Mostrar formulario -->
-            <?php if(!isset($_POST['enviar'])): ?>
             <form name="input" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-                Nombre: <input type="text" name="nombre" value=""/>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($_POST['nombre'] ?? ''); ?>">
                 <?php
                 if ($aErrores['nombre'] != '') {
-                    echo "<span style='color:red; display:block; font-size:13px;'>" . $aErrores['nombre'] . "</span>";
+                    echo "<span style='color:red; display:block; font-size:13px;'>". $aErrores['nombre'] . "</span>";
                 }
                 ?>
                 <br>
-
-                Curso: <input type="text" name="curso" value=""/>
+                <label for="curso">Curso:</label>
+                <input type="text" id="curso" name="curso" value="<?php echo htmlspecialchars($_POST['curso'] ?? ''); ?>">
                 <?php
                 if ($aErrores['curso'] != '') {
-                    echo "<span style='color:red; display:block; font-size:13px;'>" . $aErrores['apellidos'] . "</span>";
+                    echo "<span style='color:red; display:block; font-size:13px;'>" . $aErrores['curso'] . "</span>";
                 }
                 ?>
                 <br>
-
-                <p><input type="submit" name="enviar" value="Enviar"/></p>
+                <p>
+                    <input type="submit" name="enviar" value="Enviar">
+                </p>
             </form>
-            
+        <?php
+        }
+        ?>
     </body>
 </html>
+```
