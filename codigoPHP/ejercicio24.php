@@ -31,25 +31,29 @@
             <h2>Ejercicio 23</h2>
         </nav>
         <main>
+        <h1><a href='../indexProyectoTema3.php'>volver</a></h1>
             <div class="ejercicio">
                 <?php
-                     // importación de la librería
                     ini_set('display_errors', 1);
                     ini_set('display_startup_errors', 1);
                     error_reporting(E_ALL);
+                    
+                ?>
+                <?php
+                     // importación de la librería
                      require_once  '../core/231018libreriaValidacion.php';
                      
                     // Inicialización de variables
                     $entradaOk = true; // Variable que nos indica que todo va bien
                     $aErrores = [
-                        'Inombre' => '',
-                        'fechaN' => '',
-                        'sueldoS' => ''
+                        'nombre' => '',
+                        'fecha' => '',
+                        'sueldo' => ''
                     ]; // Array donde recogemos los mensajes de error
                     $aRespuestas = [
-                        'Inombre' => '',
-                        'fechaN' => '',
-                        'sueldoS' => ''
+                        'nombre' => '',
+                        'fecha' => '',
+                        'sueldo' => ''
                     ]; // Array donde recogeremos las respuestas correctas (si $entradaOK)
 
                     // Cargar valores por defecto en los campos del formulario
@@ -58,20 +62,18 @@
                     // Para cada campo del formulario: Validar entrada y actuar en consecuencia
                     if(isset($_POST["submit"])){
                         // Validamos los datos para cada campo del formulario.
-                        $aRespuestas['Inombre'] = $_POST['Inombre'] ?? '';
-                        $aRespuestas['fechaN'] = $_POST['fechaN'] ?? '';
-                        $aRespuestas['sueldoS'] = $_POST['sueldoS'] ?? '';
-                        $aErrores['Inombre'] = validacionFormularios::comprobarAlfabetico($aRespuestas['nombre'],100,0,1);
-                        $aErrores['fechaN'] = validacionFormularios::validarFecha($aRespuestas['fecha'],"01/01/2027","01/01/1900", 1);
-                        $aErrores['sueldoS'] = validacionFormularios::comprobarFloat($aRespuestas['sueldo'], 10000, 0, 1);
+                        $aRespuestas['nombre'] = $_POST['Inombre'] ?? '';
+                        $aRespuestas['fecha'] = $_POST['fechaN'] ?? '';
+                        $aRespuestas['sueldo'] = $_POST['sueldoS'] ?? '';
+                        $aErrores['nombre'] = validacionFormularios::comprobarAlfabetico($aRespuestas['nombre'],100,0,1);
+                        $aErrores['fecha'] = validacionFormularios::validarFecha($aRespuestas['fecha'],"01/01/2027","01/01/1900", 1);
+                        $aErrores['sueldo'] = validacionFormularios::comprobarFloat($aRespuestas['sueldo'], 10000, 0, 1);
+
                         // Recorremos el array de errores para comprobar si ha habido alguno.
                         // true: la variable booleana $entradaOk recibe el valor false.
                         foreach ($aErrores as $campo => $valor) {
                             if($valor !== null){
                                 $entradaOk = false;
-                            }
-                            else{
-                                $aRespuestas[$campo] = $_POST[$campo] ?? '';
                             }
                         }
                     } else{
@@ -82,9 +84,9 @@
                     if($entradaOk){
                         //En caso de que el formulario haya sido rellenado de manera correcta.
 
-                        $aRespuestas['Inombre'] = $_POST['Inombre'];       // Añadir al campo nombre el valor enviado desde el formulario.
-                        $aRespuestas['fechaN'] = $_POST['fechaN'];         // Añadir al campo fecha el valor introducido en el formulario.
-                        $aRespuestas['sueldoS'] = $_POST['sueldoS'];       // Añadir al campo sueldo el valor introducido en el formulario.
+                        $aRespuestas['nombre'] = $_POST['Inombre'];       // Añadir al campo nombre el valor enviado desde el formulario.
+                        $aRespuestas['fecha'] = $_POST['fechaN'];         // Añadir al campo fecha el valor introducido en el formulario.
+                        $aRespuestas['sueldo'] = $_POST['sueldoS'];       // Añadir al campo sueldo el valor introducido en el formulario.
 
                         // Recorremos el array de respuestas con un foreach para mostrar las respuestas.
 
@@ -127,7 +129,7 @@
         </main>
         <footer>
             <div>
-                <a href="../indexProyectoTema3.php" color="white">Álvaro Calderón Pérez</a>
+                <a href="../indexProyectoTema3.php" color="white">Santiago González Vicente</a>
                 <time datetime="2026-10-13">13-10-2026</time>
             </div>
         </footer>

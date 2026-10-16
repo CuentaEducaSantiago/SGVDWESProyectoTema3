@@ -31,23 +31,15 @@
             <h2>Ejercicio 23</h2>
         </nav>
         <main>
+        <h1><a href='../indexProyectoTema3.php'>volver</a></h1>
             <div class="ejercicio">
                 <?php
-                
                     ini_set('display_errors', 1);
                     ini_set('display_startup_errors', 1);
                     error_reporting(E_ALL);
                     
                 ?>
                 <?php
-                /**
-                     * @author Álvaro Calderón Pérez
-                     * @since 13-10-2026
-                     *  Construir un formulario para recoger un cuestionario realizado a una persona y mostrar en la misma página las preguntas y las respuestas
-                        recogidas; en el caso de que alguna respuesta esté vacía o errónea volverá a salir el formulario con el mensaje correspondiente.
-
-                     */
-                     
                      // importación de la librería
                      require_once  '../core/231018libreriaValidacion.php';
                      
@@ -137,7 +129,7 @@
         </main>
         <footer>
             <div>
-                <a href="../indexProyectoTema3.php" color="white">Álvaro Calderón Pérez</a>
+                <a href="../indexProyectoTema3.php" color="white">Santiago González Vicente</a>
                 <time datetime="2026-10-13">13-10-2026</time>
             </div>
         </footer>
